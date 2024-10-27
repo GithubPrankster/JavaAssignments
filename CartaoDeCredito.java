@@ -3,29 +3,51 @@ package Incremento1;
 import java.util.Scanner;
 
 class CartaoDeCredito {
-	String numero, nomeTitular, cpfTitular;
-	float limite, saldo;
+	private String numero, nomeTitular, cpfTitular;
+	private float limite, saldo;
 	
-	public CartaoDeCredito(float l_inicial) {
-		limite = l_inicial;
-		saldo = limite;
-	}
-	
-	public float consultarSaldo() {
-		return saldo;
-	}
-	
-	public float consultarLimite() {
+	private float get_limite() {
 		return limite;
 	}
 	
+	private void set_limite(float valor) {
+		limite = valor;
+	}
+	
+	private float get_saldo() {
+		return limite;
+	}
+	
+	private void set_saldo(float valor) {
+		saldo = valor;
+	}
+	
+	
+	public CartaoDeCredito(float l_inicial) {
+		limite = l_inicial;
+		set_saldo(get_limite());
+	}
+	
+	public float consultarSaldo() {
+		return get_saldo();
+	}
+	
+	public float consultarLimite() {
+		return get_limite();
+	}
+	
 	public boolean realizarTransação(float valor) {
-		float resultado = saldo - valor;
+		float resultado = get_saldo() - valor;
 		if(resultado > 0.f) {
-			saldo = resultado;
+			set_saldo(resultado);
 			return true;
 		}
 		return false;
+	}
+	
+	public void alterarLimite(float novo_limite) {
+		set_limite(novo_limite);
+		set_saldo(novo_limite);
 	}
 }
 
